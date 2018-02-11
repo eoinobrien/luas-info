@@ -9,22 +9,22 @@ namespace LuasTimes.Dialogflow
 	public class DialogFlowResponse
 	{
 		[JsonProperty(PropertyName = "fulfillmentText")]
-		public string FulfillmentText { get; set; }
+		public string FulfillmentText { get; private set; }
 
 		[JsonProperty(PropertyName = "fulfillmentMessages")]
-		public List<Message> FulfillmentMessages { get; set; }
+		public List<Message> FulfillmentMessages { get; private set; }
 
 		[JsonProperty(PropertyName = "source")]
-		public string Source { get; set; }
+		public string Source { get; private set; }
 
 		[JsonProperty(PropertyName = "payload")]
-		public Dictionary<string, string> Payload { get; set; }
+		public Dictionary<string, string> Payload { get; private set; }
 
 		[JsonProperty(PropertyName = "outputContexts")]
-		public List<Context> OutputContexts { get; set; }
+		public List<Context> OutputContexts { get; private set; }
 
 		[JsonProperty(PropertyName = "followupEventInput")]
-		public EventInput FollowupEventInput { get; set; }
+		public EventInput FollowupEventInput { get; private set; }
 
 		public DialogFlowResponse(IResponse response)
 		{

@@ -26,7 +26,7 @@ namespace LuasTimes.Dialogflow
 		[JsonProperty(PropertyName = "direction")]
 		public string Direction { get; set; }
 
-		[JsonProperty(PropertyName = "destination-station")]
+		[JsonProperty(PropertyName = "destinationStation")]
 		public string DestinationStation { get; set; }
 	}
 

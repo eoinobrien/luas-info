@@ -16,8 +16,7 @@ namespace LuasTimes
 
 		public Forcast(StopInfo stopInfo)
 		{
-			Station = Station.Stations
-				.FirstOrDefault(station => station.Abbreviation == stopInfo.StopAbv);
+			Station = Station.GetFromAbbreviation(stopInfo.StopAbv);
 
 			Info = stopInfo;
 		}
@@ -49,20 +48,8 @@ namespace LuasTimes
 	[XmlRoot(ElementName = "direction")]
 	public class ForcastDirection
 	{
-		private List<Tram> trams;
 		[XmlElement(ElementName = "tram")]
-		public List<Tram> Trams
-		{
-			get
-			{
-				return trams;
-			}
-			set
-			{
-				trams = value;
-				trams.RemoveAll(t => t.NoTramsForcast);
-			}
-		}
+		public List<Tram> Trams { get; set; }
 
 		[XmlAttribute(AttributeName = "name")]
 		public string DirectionName { get; set; }
@@ -80,7 +67,7 @@ namespace LuasTimes
 		[XmlAttribute(AttributeName = "destination")]
 		public string DestinationName { get; set; }
 
-		public Station Destination => Station.Stations.FirstOrDefault(s => s.Name.ToLowerInvariant() == DestinationName.ToLowerInvariant());
+		public Station Destination => Station.GetFromName(DestinationName.ToLowerInvariant());
 
 		public bool IsDue => DueMins == "DUE";
 
@@ -99,13 +86,18 @@ namespace LuasTimes
 
 		public bool TramGoesToDestination(Station UserDestination, Direction direction)
 		{
+			if (NoTramsForcast  || Destination.Line != UserDestination.Line)
+			{
+				return false;
+			}
+
 			if (direction == Direction.Inbound)
 			{
-				return Destination.StationOrder >= UserDestination.StationOrder;
+				return Destination.StationOrder <= UserDestination.StationOrder;
 			}
 			else
 			{
-				return Destination.StationOrder <= UserDestination.StationOrder;
+				return Destination.StationOrder >= UserDestination.StationOrder;
 			}
 		}
 	}

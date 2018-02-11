@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -69,9 +70,26 @@ namespace LuasTimes
 		}
 
 
+		public static Station GetFromAbbreviation(string abbreviation)
+		{
+			if (string.IsNullOrWhiteSpace(abbreviation))
+				return null;
+
+			return Stations.FirstOrDefault(st => st.Abbreviation.ToLowerInvariant() == abbreviation.ToLowerInvariant());
+		}
+
+
+		public static Station GetFromName(string name)
+		{
+			if (string.IsNullOrWhiteSpace(name))
+				return null;
+
+			return Stations.FirstOrDefault(st => st.Name.ToLowerInvariant() == name.ToLowerInvariant());
+		}
+
+
 		public static List<Station> Stations => new List<Station> {
-			new Station("The Point", "the point", "TPT", Line.Red, 1),
-			new Station("Spencer Dock", "spencer dock", "SDK", Line.Red, 2),
+			new Station("Spencer Dock", "spencer dock", "SDK", Line.Red, 2, Direction.Outbound),
 			new Station("Mayor Square - NCI", "mayor square - <say-as interpret-as=\"spell-out\">nci</say-as>", "MYS", Line.Red, 3),
 			new Station("George's Dock", "george's dock", "GDK", Line.Red, 4),
 			new Station("Connolly", "Connolly", "CON", Line.Red, 5),
@@ -96,25 +114,25 @@ namespace LuasTimes
 			new Station("Belgard", "belgard", "BEL", Line.Red, 24),
 			new Station("Cookstown", "cookstown", "COO", Line.Red, 25),
 			new Station("Hospital", "hospital", "HOS", Line.Red, 26),
-			new Station("Tallaght", "tallaght", "TAL", Line.Red, 27),
+			new Station("Tallaght", "tallaght", "TAL", Line.Red, 27, Direction.Inbound),
 			new Station("Fettercairn", "fettercairn", "FET", Line.Red, 28),
 			new Station("Cheeverstown", "cheeverstown", "CVN", Line.Red, 29),
 			new Station("Citywest Campus", "citywest campus", "CIT", Line.Red, 30),
 			new Station("Fortunestown", "fortunestown", "FOR", Line.Red, 31),
-			new Station("Saggart", "saggart", "SAG", Line.Red, 32),
+			new Station("Saggart", "saggart", "SAG", Line.Red, 32, Direction.Inbound),
 			new Station("Depot", "depot", "DEP", Line.Depot, 1),
-			new Station("Broombridge", "broombridge", "BRO", Line.Green, 101),
+			new Station("Broombridge", "broombridge", "BRO", Line.Green, 101, Direction.Outbound),
 			new Station("Cabra", "cabra", "CAB", Line.Green, 102),
 			new Station("Phibsborough", "phibsborough", "PHI", Line.Green, 103),
 			new Station("Grangegorman", "grangegorman", "GRA", Line.Green, 104),
 			new Station("Broadstone - DIT", "broadstone - <say-as interpret-as=\"spell-out\">dit</say-as>", "BRD", Line.Green, 105),
 			new Station("Dominick", "dominick", "DOM", Line.Green, 106),
-			new Station("Parnell", "parnell", "PAR", Line.Green, 107),
-			new Station("O'Connell - Upper", "o'connell - upper", "OUP", Line.Green, 108),
-			new Station("O'Connell - GPO", "o'connell - <say-as interpret-as=\"spell-out\">gpo</say-as>", "OGP", Line.Green, 109),
-			new Station("Marlborough", "marlborough", "MAR", Line.Green, 110),
-			new Station("Westmoreland", "westmoreland", "WES", Line.Green, 111),
-			new Station("Trinity", "trinity", "TRY", Line.Green, 112),
+			new Station("Parnell", "parnell", "PAR", Line.Green, 107, Direction.Outbound),
+			new Station("O'Connell - Upper", "o'connell - upper", "OUP", Line.Green, 108, Direction.Inbound),
+			new Station("O'Connell - GPO", "o'connell - <say-as interpret-as=\"spell-out\">gpo</say-as>", "OGP", Line.Green, 109, Direction.Inbound),
+			new Station("Marlborough", "marlborough", "MAR", Line.Green, 110, Direction.Outbound),
+			new Station("Westmoreland", "westmoreland", "WES", Line.Green, 111, Direction.Inbound),
+			new Station("Trinity", "trinity", "TRY", Line.Green, 112, Direction.Outbound),
 			new Station("Dawson", "dawson", "DAW", Line.Green, 113),
 			new Station("St. Stephen's Green", "st. stephen's green", "STS", Line.Green, 114),
 			new Station("Harcourt", "harcourt", "HAR", Line.Green, 115),
@@ -139,7 +157,7 @@ namespace LuasTimes
 			new Station("Brennanstown", "brennanstown", "BRE", Line.Green, 134),
 			new Station("Laughanstown", "laughanstown", "LAU", Line.Green, 135),
 			new Station("Cherrywood", "cherrywood", "CHE", Line.Green, 136),
-			new Station("Bride's Glen", "bride's glen", "BRI", Line.Green, 137)
+			new Station("Bride's Glen", "bride's glen", "BRI", Line.Green, 137, Direction.Inbound)
 		};
 	}
 }

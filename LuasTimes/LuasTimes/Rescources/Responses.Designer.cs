@@ -142,20 +142,29 @@ namespace LuasTimes.Rescources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The next Luas from {0} {1} is due now. The following tram is due in {2}.
+        ///   Looks up a localized string similar to The next tram from {0} {1} is due now. The following departure is in {2}.
         /// </summary>
-        internal static string Time_DueAndNext {
+        internal static string Time_DueAndNext_1 {
             get {
-                return ResourceManager.GetString("Time_DueAndNext", resourceCulture);
+                return ResourceManager.GetString("Time_DueAndNext_1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The next &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;/l̪ˠuəsˠ/&quot;&gt;Luas&lt;/phoneme&gt; from {0} {1} is due now. The following tram is due in {2}.
+        ///   Looks up a localized string similar to The next &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;/l̪ˠuəsˠ/&quot;&gt;Luas&lt;/phoneme&gt; from {0} {1} is due now. The following tram is due in {2}. .
         /// </summary>
-        internal static string Time_DueAndNext_SSML {
+        internal static string Time_DueAndNext_1_SSML {
             get {
-                return ResourceManager.GetString("Time_DueAndNext_SSML", resourceCulture);
+                return ResourceManager.GetString("Time_DueAndNext_1_SSML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The next tram from {0} {1} is due now. The following departure is in {2}. .
+        /// </summary>
+        internal static string Time_DueAndNext_2 {
+            get {
+                return ResourceManager.GetString("Time_DueAndNext_2", resourceCulture);
             }
         }
         
@@ -196,7 +205,7 @@ namespace LuasTimes.Rescources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no trams Forcast.
+        ///   Looks up a localized string similar to There are no trams forcast from {0}. .
         /// </summary>
         internal static string Time_NoTramsForcast {
             get {
@@ -205,20 +214,47 @@ namespace LuasTimes.Rescources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The next Luas from {0} {1} is in {2}.
+        ///   Looks up a localized string similar to There are no {0} trams forcast from {1}. .
         /// </summary>
-        internal static string Time_ResultMinutes {
+        internal static string Time_NoTramsForcast_Direction {
             get {
-                return ResourceManager.GetString("Time_ResultMinutes", resourceCulture);
+                return ResourceManager.GetString("Time_NoTramsForcast_Direction", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The next &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;/l̪ˠuəsˠ/&quot;&gt;Luas&lt;/phoneme&gt; from {0} {1} is in {2}.
+        ///   Looks up a localized string similar to There are no trams to {0} from {1}. However, there is a tram to {2}. .
         /// </summary>
-        internal static string Time_ResultMinutes_SSML {
+        internal static string Time_NoTramsToDestination {
             get {
-                return ResourceManager.GetString("Time_ResultMinutes_SSML", resourceCulture);
+                return ResourceManager.GetString("Time_NoTramsToDestination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The next Luas from {0} {1} is in {2}. .
+        /// </summary>
+        internal static string Time_ResultMinutes_1 {
+            get {
+                return ResourceManager.GetString("Time_ResultMinutes_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The next &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;/l̪ˠuəsˠ/&quot;&gt;Luas&lt;/phoneme&gt; from {0} {1} is in {2}. .
+        /// </summary>
+        internal static string Time_ResultMinutes_1_SSML {
+            get {
+                return ResourceManager.GetString("Time_ResultMinutes_1_SSML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The next tram from {0} {1} is in {2}. .
+        /// </summary>
+        internal static string Time_ResultMinutes_2 {
+            get {
+                return ResourceManager.GetString("Time_ResultMinutes_2", resourceCulture);
             }
         }
         
@@ -232,7 +268,7 @@ namespace LuasTimes.Rescources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I didn&apos;t understand the stop provided. Example stops are st. stephen&apos;s green or abbey stree.
+        ///   Looks up a localized string similar to I didn&apos;t understand the stop provided. Example stops are St. Stephen&apos;s Green or Abbey Street.
         /// </summary>
         internal static string UnknownStopRepromt {
             get {

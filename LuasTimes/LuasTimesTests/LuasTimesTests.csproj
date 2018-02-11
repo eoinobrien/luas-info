@@ -54,6 +54,7 @@
     <Compile Include="DirectionExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationTests.cs" />
+    <Compile Include="TramTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

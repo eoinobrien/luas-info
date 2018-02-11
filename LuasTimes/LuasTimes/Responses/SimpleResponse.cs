@@ -9,10 +9,17 @@
 
 		public SimpleResponse() { }
 
-		public SimpleResponse(string text)
+		public SimpleResponse(string text, string ssml = null)
 		{
 			Text = text;
-			Ssml = text;
+			if (string.IsNullOrWhiteSpace(ssml))
+			{
+				Ssml = text;
+			}
+			else
+			{
+				Ssml = ssml;
+			}
 		}
 	}
 }

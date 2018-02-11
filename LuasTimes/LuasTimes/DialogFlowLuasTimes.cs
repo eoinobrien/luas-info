@@ -4,7 +4,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,15 +17,15 @@ namespace LuasTimes
 			[HttpTrigger(AuthorizationLevel.Function, "post", Route = "dialogflow/")]HttpRequestMessage req,
 			TraceWriter log)
 		{
-			log.Info("C# HTTP trigger function processed a request.");
+			log.Info("DialogFlow trigger function processed a request.");
 
 			// Get request body
-			DialogflowRequest dialogflowRequest = await req.Content.ReadAsAsync<DialogflowRequest>();
-			Parameters parameters = dialogflowRequest.QueryResult.Parameters;
+			DialogflowRequest request = await req.Content.ReadAsAsync<DialogflowRequest>();
+			Parameters parameters = request.QueryResult.Parameters;
 
-			Station station = Station.Stations.FirstOrDefault(st => st.Abbreviation == parameters.Station);
+			Station station = Station.GetFromAbbreviation(parameters.Station);
 			Direction direction = parameters.Direction.ParseDirection();
-			Station destinationStation = Station.Stations.FirstOrDefault(st => st.Abbreviation == parameters.DestinationStation);
+			Station destinationStation = Station.GetFromAbbreviation(parameters.DestinationStation);
 
 			if (station != null)
 			{

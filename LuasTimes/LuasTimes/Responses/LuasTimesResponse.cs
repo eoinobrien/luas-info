@@ -1,21 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using LuasTimes.Extensions;
+
+using Response = LuasTimes.Rescources.Responses;
 
 namespace LuasTimes.Responses
 {
 	public class LuasTimesResponse : IResponse
 	{
-		Station Origin { get; set; }
+		public Station Origin { get; private set; }
 
-		Forcast Forcast { get; set; }
 
-		Direction Direction { get; set; }
+		public  Forcast Forcast { get; private set; }
 
-		Station Destination { get; set; }
 
-		List<ForcastDirection> Directions { get; set; }
+		public Direction Direction { get; private set; }
 
-		bool ToUsersDestination { get; set; }
+
+		public Station Destination { get; private set; }
+
+
+		public List<ForcastDirection> Directions { get; private set; }
+
+
+		public bool ToUsersDestination { get; private set; }
+
+
+		public string Text { get; private set; }
+
+
+		public string Ssml { get; private set; }
 
 
 		public LuasTimesResponse(Station origin, Direction direction = Direction.Undefined, Station destination = null)
@@ -31,47 +46,94 @@ namespace LuasTimes.Responses
 			}
 
 			Directions = Forcast.Info.Directions;
+
+			ConstuctText();
 		}
 
 
-		public string Text
+		private void ConstuctText()
 		{
-			get
+			if (Direction != Direction.Undefined)
 			{
-				if (Direction != Direction.Undefined)
+				List<Tram> trams = Directions.ElementAt((int)Direction).Trams;
+
+				if (trams.All(t => t.NoTramsForcast))
 				{
-					List<Tram> trams = Directions.ElementAt((int)Direction).Trams;
-
-					if (trams.Count == 0)
-						return string.Format("There are no Trams Forcast");
-
-					return string.Format("The next tram from {0} {1}", Origin.Pronunciation, GetDirectionString(Direction));
+					Text = string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Name);
+					Ssml = string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Pronunciation);
+					return;
 				}
-				else // Return both Directions
+
+				if (Destination != null)
 				{
-					return string.Format("The next tram from {0}, {1} and {2}",
-						Origin.Pronunciation,
-						GetDirectionString(Direction.Inbound),
-						GetDirectionString(Direction.Outbound));
+					ToUsersDestination = Directions.ElementAt((int)Direction)
+						.Trams
+						.Any(t => t.TramGoesToDestination(Destination, Direction));
+
+					if (!ToUsersDestination)
+					{
+						Text += string.Format(Response.Time_NoTramsToDestination, Destination.Name, Origin.Name, trams.First().Destination.Name);
+						Ssml += string.Format(Response.Time_NoTramsToDestination, Destination.Pronunciation, Origin.Pronunciation, trams.First().Destination.Pronunciation);
+					}
+					else
+					{
+						trams = Directions.ElementAt((int)Direction)
+							.Trams
+							.Where(t => t.TramGoesToDestination(Destination, Direction))
+							.ToList();
+					}
+
+					if (trams.First().IsDue)
+					{
+						Text += string.Format(Response.Time_DueAndNext_1, Origin.Name, $"to {Destination.Name}", trams.ElementAt(1).Minutes.GetMinutesString());
+						Ssml += string.Format(Response.Time_DueAndNext_1_SSML, Origin.Pronunciation, $"to {Destination.Pronunciation}", trams.ElementAt(1).Minutes.GetMinutesString());
+					}
+					else
+					{
+						Text += string.Format(Response.Time_ResultMinutes_1, Origin.Name, $"to {Destination.Name}", trams.First().Minutes.GetMinutesString());
+						Ssml += string.Format(Response.Time_ResultMinutes_1_SSML, Origin.Pronunciation, $"to {Destination.Pronunciation}", trams.First().Minutes.GetMinutesString());
+					}
 				}
 			}
-		}
-
-		public string Ssml
-		{
-			get
+			else
 			{
-				return "test";
+				if (Directions.All(dir => dir.Trams.All(t => t.NoTramsForcast)))
+				{
+					Text = string.Format(Response.Time_NoTramsForcast, Origin.Name);
+					Ssml = string.Format(Response.Time_NoTramsForcast, Origin.Pronunciation);
+					return;
+				}
+
+				foreach (Direction dir in Enum.GetValues(typeof(Direction)).Cast<Direction>())
+				{
+					// Ignore undefined direction, and if the stop only has trams that go one direction, ignore the other direction
+					if (dir == Direction.Undefined || Origin.OneWayDirection != dir)
+						continue;
+
+					List<Tram> trams = Directions.ElementAt((int)dir).Trams;
+
+					if (trams.All(t => t.NoTramsForcast))
+					{
+						Text += string.Format(Response.Time_NoTramsForcast_Direction, dir.ToString().ToLower(), Origin.Name);
+						Ssml += string.Format(Response.Time_NoTramsForcast_Direction, dir.ToString().ToLower(), Origin.Pronunciation);
+					}
+					else
+					{
+						if (trams.First().IsDue)
+						{
+							Text += string.Format(Response.Time_DueAndNext_1, Origin.Name, dir.ToString().ToLower(), trams.ElementAt(1).Minutes.GetMinutesString());
+							Ssml += string.Format(Response.Time_DueAndNext_1_SSML, Origin.Pronunciation, dir.ToString().ToLower(), trams.ElementAt(1).Minutes.GetMinutesString());
+						}
+						else
+						{
+							Text += string.Format(Response.Time_ResultMinutes_1, Origin.Name, dir.ToString().ToLower(), trams.First().Minutes.GetMinutesString());
+							Ssml += string.Format(Response.Time_ResultMinutes_1_SSML, Origin.Pronunciation, dir.ToString().ToLower(), trams.First().Minutes.GetMinutesString());
+						}
+					}
+				}
+
+				return;
 			}
-		}
-
-		private string GetDirectionString(Direction direction)
-		{
-			List<Tram> trams = Directions.ElementAt((int)direction).Trams;
-			if (trams.First().IsDue)
-				return string.Format("{0} is Due. The following tram {0} is in {1} {2}.", direction, trams.ElementAt(1).Minutes, trams.First().Minutes > 1 ? "minutes" : "minute");
-
-			return string.Format("{0} is in {1} {2}.", direction, trams.First().Minutes, trams.First().Minutes > 1 ? "minutes" : "minute");
 		}
 	}
 }

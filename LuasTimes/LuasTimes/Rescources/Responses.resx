@@ -147,17 +147,23 @@
   <data name="Outbound" xml:space="preserve">
     <value>outbound</value>
   </data>
-  <data name="Time_ResultMinutes" xml:space="preserve">
-    <value>The next Luas from {0} {1} is in {2}</value>
+  <data name="Time_ResultMinutes_1" xml:space="preserve">
+    <value>The next Luas from {0} {1} is in {2}. </value>
   </data>
-  <data name="Time_ResultMinutes_SSML" xml:space="preserve">
-    <value>The next &lt;phoneme alphabet="ipa" ph="/l̪ˠuəsˠ/"&gt;Luas&lt;/phoneme&gt; from {0} {1} is in {2}</value>
+  <data name="Time_ResultMinutes_1_SSML" xml:space="preserve">
+    <value>The next &lt;phoneme alphabet="ipa" ph="/l̪ˠuəsˠ/"&gt;Luas&lt;/phoneme&gt; from {0} {1} is in {2}. </value>
   </data>
-  <data name="Time_DueAndNext" xml:space="preserve">
-    <value>The next Luas from {0} {1} is due now. The following tram is due in {2}</value>
+  <data name="Time_ResultMinutes_2" xml:space="preserve">
+    <value>The next tram from {0} {1} is in {2}. </value>
   </data>
-  <data name="Time_DueAndNext_SSML" xml:space="preserve">
-    <value>The next &lt;phoneme alphabet="ipa" ph="/l̪ˠuəsˠ/"&gt;Luas&lt;/phoneme&gt; from {0} {1} is due now. The following tram is due in {2}</value>
+  <data name="Time_DueAndNext_1" xml:space="preserve">
+    <value>The next tram from {0} {1} is due now. The following departure is in {2}</value>
+  </data>
+  <data name="Time_DueAndNext_1_SSML" xml:space="preserve">
+    <value>The next &lt;phoneme alphabet="ipa" ph="/l̪ˠuəsˠ/"&gt;Luas&lt;/phoneme&gt; from {0} {1} is due now. The following tram is due in {2}. </value>
+  </data>
+  <data name="Time_DueAndNext_2" xml:space="preserve">
+    <value>The next tram from {0} {1} is due now. The following departure is in {2}. </value>
   </data>
   <data name="Time_Minutes_Single" xml:space="preserve">
     <value>{0} minute</value>
@@ -172,7 +178,13 @@
     <value>{0} mins</value>
   </data>
   <data name="Time_NoTramsForcast" xml:space="preserve">
-    <value>There are no trams Forcast</value>
+    <value>There are no trams forcast from {0}. </value>
+  </data>
+  <data name="Time_NoTramsForcast_Direction" xml:space="preserve">
+    <value>There are no {0} trams forcast from {1}. </value>
+  </data>
+  <data name="Time_NoTramsToDestination" xml:space="preserve">
+    <value>There are no trams to {0} from {1}. However, there is a tram to {2}. </value>
   </data>
   <data name="EndOfServices_Reprompt" xml:space="preserve">
     <value />
@@ -181,6 +193,6 @@
     <value>Sorry, I didn't understand the stop provided. Ensure you are using a valid stop.</value>
   </data>
   <data name="UnknownStopRepromt" xml:space="preserve">
-    <value>I didn't understand the stop provided. Example stops are st. stephen's green or abbey stree</value>
+    <value>I didn't understand the stop provided. Example stops are St. Stephen's Green or Abbey Street</value>
   </data>
 </root>
