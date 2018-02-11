@@ -3,6 +3,6 @@ solution: LuasTimes.sln
 install:
   - sudo apt-get install -y gtk-sharp2
   - nuget restore LuasTimes.sln
-script:`
+script:
   - msbuild /p:Configuration=Release LuasTimes.sln
   - mono ./testrunner/NUnit.Runners.*/tools/nunit3-console.exe ./LuasTimesTests/bin/Release/LuasTimesTests.dll
