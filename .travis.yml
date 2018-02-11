@@ -1,7 +1,8 @@
 language: csharp
-solution: "./LuasTimes.sln"
+solution: LuasTimes.sln
 install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./LuasTimes.sln
-script:
-- msbuild ./LuasTimes.sln
-- mono ./packages/NUnit.*/lib/net45/nunit.framework.dll ./LuasTimesTests/bin/Debug/LuasTimesTests.dll
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore LuasTimes.sln
+script:`
+  - msbuild /p:Configuration=Release LuasTimes.sln
+  - mono ./testrunner/NUnit.Runners.*/tools/nunit3-console.exe ./LuasTimesTests/bin/Release/LuasTimesTests.dll
