@@ -4,4 +4,4 @@ install:
 - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./LuasTimes.sln
 script:
 - xbuild ./LuasTimes.sln
-- mono ./Fibonacci/packages/xunit.runner.console*/tools/xunit.console.exe ./LuasTimesTests/bin/Debug/LuasTimesTests.dll
+- mono ./packages/NUnit.*/lib/net45/nunit.framework.dll ./LuasTimesTests/bin/Debug/LuasTimesTests.dll
