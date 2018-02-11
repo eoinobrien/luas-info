@@ -1,8 +1,9 @@
 language: csharp
 solution: LuasTimes.sln
-install:
-  - sudo apt-get install -y gtk-sharp2
+
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
   - nuget restore LuasTimes.sln
-script:
-  - msbuild /p:Configuration=Release LuasTimes.sln
-  - mono ./testrunner/NUnit.Runners.*/tools/nunit3-console.exe ./LuasTimesTests/bin/Release/LuasTimesTests.dll
+after_script:
+  - nunit-console LuasTimes/bin/Release/LuasTimes.dll
