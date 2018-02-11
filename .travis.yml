@@ -1,0 +1,7 @@
+language: csharp
+solution: "./LuasTimes.sln"
+install:
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./LuasTimes.sln
+script:
+- xbuild ./LuasTimes.sln
+- mono ./Fibonacci/packages/xunit.runner.console*/tools/xunit.console.exe ./LuasTimesTests/bin/Debug/LuasTimesTests.dll

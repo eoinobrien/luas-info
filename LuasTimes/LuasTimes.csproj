@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
-  <ItemGroup>    
-    <PackageReference Include="Alexa.NET" Version="1.4.2" />    
+  <ItemGroup>
+    <PackageReference Include="Alexa.NET" Version="1.4.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.7" />
   </ItemGroup>
   <ItemGroup>
