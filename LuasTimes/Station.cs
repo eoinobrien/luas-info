@@ -88,6 +88,15 @@ namespace LuasTimes
 		}
 
 
+		public static Station GetFromNameOrAbbreviation(string input)
+		{
+			if (string.IsNullOrWhiteSpace(input))
+				return null;
+
+			return Stations.FirstOrDefault(st => st.Name.ToLowerInvariant() == input.ToLowerInvariant() || st.Abbreviation.ToLowerInvariant() == input.ToLowerInvariant());
+		}
+
+
 		public static List<Station> Stations => new List<Station> {
 			new Station("Spencer Dock", "spencer dock", "SDK", Line.Red, 2, Direction.Outbound),
 			new Station("Mayor Square - NCI", "mayor square - <say-as interpret-as=\"spell-out\">nci</say-as>", "MYS", Line.Red, 3),
@@ -159,5 +168,11 @@ namespace LuasTimes
 			new Station("Cherrywood", "cherrywood", "CHE", Line.Green, 136),
 			new Station("Bride's Glen", "bride's glen", "BRI", Line.Green, 137, Direction.Inbound)
 		};
+
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }

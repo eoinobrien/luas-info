@@ -14,7 +14,7 @@ namespace LuasTimes
 	{
 		[FunctionName("DialogFlowLuasTimes")]
 		public static async Task<HttpResponseMessage> Run(
-			[HttpTrigger(AuthorizationLevel.Function, "post", Route = "dialogflow/")]HttpRequestMessage req,
+			[HttpTrigger(AuthorizationLevel.Function, "post", Route = "dialogflow/")] HttpRequestMessage req,
 			TraceWriter log)
 		{
 			log.Info("DialogFlow trigger function processed a request.");
@@ -27,18 +27,24 @@ namespace LuasTimes
 			Direction direction = parameters.Direction.ParseDirection();
 			Station destinationStation = Station.GetFromAbbreviation(parameters.DestinationStation);
 
+			log.Info(string.Format("Parameters: Station: '{0}', Direction: '{1}', Destination: '{2}'.", station == null ? "null" : station.Name, direction, destinationStation == null ? "null" : destinationStation.Name));
+
 			if (station != null)
 			{
 				IResponse responseBuilder = new LuasTimesResponse(station, direction, destinationStation);
 				DialogFlowResponse response = new DialogFlowResponse(responseBuilder);
 
-				return req.CreateResponse(HttpStatusCode.OK,
-					JsonConvert.SerializeObject(response,
-					Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+				return req.CreateResponse(HttpStatusCode.OK, response);
+
+				//return req.CreateResponse(HttpStatusCode.OK,
+				//	JsonConvert.SerializeObject(response,
+				//	Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
 			}
 
-			return req.CreateResponse(HttpStatusCode.BadRequest,
-				JsonConvert.SerializeObject(new DialogFlowResponse(new SimpleResponse("Unknown Station"))));
+			return req.CreateResponse(HttpStatusCode.OK, new DialogFlowResponse(new SimpleResponse("Unknown Station")));
+
+			//return req.CreateResponse(HttpStatusCode.BadRequest,
+				//JsonConvert.SerializeObject());
 		}
 	}
 }
