@@ -47,7 +47,9 @@ namespace LuasTimes.Responses
 
 			Directions = Forcast.Info.Directions;
 
+			Ssml = "<speaK>";
 			ConstuctText();
+			Ssml += "</speak>";
 		}
 
 
@@ -59,8 +61,8 @@ namespace LuasTimes.Responses
 
 				if (trams.All(t => t.NoTramsForcast))
 				{
-					Text = string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Name);
-					Ssml = string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Pronunciation);
+					Text += string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Name);
+					Ssml += string.Format(Response.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Pronunciation);
 					return;
 				}
 
@@ -99,15 +101,15 @@ namespace LuasTimes.Responses
 			{
 				if (Directions.All(dir => dir.Trams.All(t => t.NoTramsForcast)))
 				{
-					Text = string.Format(Response.Time_NoTramsForcast, Origin.Name);
-					Ssml = string.Format(Response.Time_NoTramsForcast, Origin.Pronunciation);
+					Text += string.Format(Response.Time_NoTramsForcast, Origin.Name);
+					Ssml += string.Format(Response.Time_NoTramsForcast, Origin.Pronunciation);
 					return;
 				}
 
 				foreach (Direction dir in Enum.GetValues(typeof(Direction)).Cast<Direction>())
 				{
 					// Ignore undefined direction, and if the stop only has trams that go one direction, ignore the other direction
-					if (dir == Direction.Undefined || Origin.OneWayDirection != dir)
+					if (dir == Direction.Undefined || Origin.OneWayDirection == Direction.Inbound && dir == Direction.Outbound || Origin.OneWayDirection == Direction.Outbound && dir == Direction.Inbound)
 						continue;
 
 					List<Tram> trams = Directions.ElementAt((int)dir).Trams;

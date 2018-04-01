@@ -8,22 +8,22 @@ namespace LuasTimes.Dialogflow
 {
 	public class DialogFlowResponse
 	{
-		[JsonProperty(PropertyName = "fulfillmentText")]
+		[JsonProperty(PropertyName = "fulfillmentText", NullValueHandling = NullValueHandling.Ignore)]
 		public string FulfillmentText { get; private set; }
 
-		[JsonProperty(PropertyName = "fulfillmentMessages")]
+		[JsonProperty(PropertyName = "fulfillmentMessages", NullValueHandling = NullValueHandling.Ignore)]
 		public List<Message> FulfillmentMessages { get; private set; }
 
-		[JsonProperty(PropertyName = "source")]
+		[JsonProperty(PropertyName = "source", NullValueHandling = NullValueHandling.Ignore)]
 		public string Source { get; private set; }
 
-		[JsonProperty(PropertyName = "payload")]
+		[JsonProperty(PropertyName = "payload", NullValueHandling = NullValueHandling.Ignore)]
 		public Dictionary<string, string> Payload { get; private set; }
 
-		[JsonProperty(PropertyName = "outputContexts")]
+		[JsonProperty(PropertyName = "outputContexts", NullValueHandling = NullValueHandling.Ignore)]
 		public List<Context> OutputContexts { get; private set; }
 
-		[JsonProperty(PropertyName = "followupEventInput")]
+		[JsonProperty(PropertyName = "followupEventInput", NullValueHandling = NullValueHandling.Ignore)]
 		public EventInput FollowupEventInput { get; private set; }
 
 		public DialogFlowResponse(IResponse response)
@@ -57,40 +57,40 @@ namespace LuasTimes.Dialogflow
 
 	public class Message
 	{
-		[JsonProperty(PropertyName = "platform"), JsonConverter(typeof(StringEnumConverter))]
+		[JsonProperty(PropertyName = "platform", NullValueHandling = NullValueHandling.Ignore), JsonConverter(typeof(StringEnumConverter))]
 		public Platform Platform { get; set; }
 
-		[JsonProperty(PropertyName = "text")]
+		[JsonProperty(PropertyName = "text", NullValueHandling = NullValueHandling.Ignore)]
 		public TextObj Text { get; set; }
 
-		[JsonProperty(PropertyName = "image")]
+		[JsonProperty(PropertyName = "image", NullValueHandling = NullValueHandling.Ignore)]
 		public Image Image { get; set; }
 
-		[JsonProperty(PropertyName = "quickReplies")]
+		[JsonProperty(PropertyName = "quickReplies", NullValueHandling = NullValueHandling.Ignore)]
 		public QuickRepliesObj QuickReplies { get; set; }
 
-		[JsonProperty(PropertyName = "card")]
+		[JsonProperty(PropertyName = "card", NullValueHandling = NullValueHandling.Ignore)]
 		public Card Card { get; set; }
 
-		[JsonProperty(PropertyName = "payload")]
+		[JsonProperty(PropertyName = "payload", NullValueHandling = NullValueHandling.Ignore)]
 		public Dictionary<string, string> Payload { get; set; }
 
-		[JsonProperty(PropertyName = "simpleResponses")]
+		[JsonProperty(PropertyName = "simpleResponses", NullValueHandling = NullValueHandling.Ignore)]
 		public SimpleResponsesObj SimpleResponses { get; set; }
 
-		[JsonProperty(PropertyName = "basicCard")]
+		[JsonProperty(PropertyName = "basicCard", NullValueHandling = NullValueHandling.Ignore)]
 		public BasicCard BasicCard { get; set; }
 
-		[JsonProperty(PropertyName = "suggestions")]
+		[JsonProperty(PropertyName = "suggestions", NullValueHandling = NullValueHandling.Ignore)]
 		public SuggestionsObj Suggestions { get; set; }
 
-		[JsonProperty(PropertyName = "linkOutSuggestion")]
+		[JsonProperty(PropertyName = "linkOutSuggestion", NullValueHandling = NullValueHandling.Ignore)]
 		public LinkOutSuggestion LinkOutSuggestion { get; set; }
 
-		[JsonProperty(PropertyName = "listSelect")]
+		[JsonProperty(PropertyName = "listSelect", NullValueHandling = NullValueHandling.Ignore)]
 		public ListSelect ListSelect { get; set; }
 
-		[JsonProperty(PropertyName = "carouselSelect")]
+		[JsonProperty(PropertyName = "carouselSelect", NullValueHandling = NullValueHandling.Ignore)]
 		public CarouselSelect CarouselSelect { get; set; }
 
 		public Message(Platform platform)
@@ -102,26 +102,26 @@ namespace LuasTimes.Dialogflow
 
 	public class Context
 	{
-		[JsonProperty(PropertyName = "name")]
+		[JsonProperty(PropertyName = "name", NullValueHandling = NullValueHandling.Ignore)]
 		public string Name { get; set; }
 
-		[JsonProperty(PropertyName = "lifespanCount")]
+		[JsonProperty(PropertyName = "lifespanCount", NullValueHandling = NullValueHandling.Ignore)]
 		public int LifespanCount { get; set; }
 
-		[JsonProperty(PropertyName = "parameters")]
+		[JsonProperty(PropertyName = "parameters", NullValueHandling = NullValueHandling.Ignore)]
 		public Dictionary<string, string> Parameters { get; set; }
 	}
 
 
 	public class EventInput
 	{
-		[JsonProperty(PropertyName = "name")]
+		[JsonProperty(PropertyName = "name", NullValueHandling = NullValueHandling.Ignore)]
 		public string Name { get; set; }
 
-		[JsonProperty(PropertyName = "languageCode")]
+		[JsonProperty(PropertyName = "languageCode", NullValueHandling = NullValueHandling.Ignore)]
 		public string LanguageCode { get; set; }
 
-		[JsonProperty(PropertyName = "parameters")]
+		[JsonProperty(PropertyName = "parameters", NullValueHandling = NullValueHandling.Ignore)]
 		public Dictionary<string, string> Parameters { get; set; }
 	}
 
@@ -142,7 +142,7 @@ namespace LuasTimes.Dialogflow
 
 	public class TextObj
 	{
-		[JsonProperty(PropertyName = "text")]
+		[JsonProperty(PropertyName = "text", NullValueHandling = NullValueHandling.Ignore)]
 		public List<string> Text { get; set; }
 
 
@@ -167,50 +167,50 @@ namespace LuasTimes.Dialogflow
 
 	public class Image
 	{
-		[JsonProperty(PropertyName = "imageUri")]
+		[JsonProperty(PropertyName = "imageUri", NullValueHandling = NullValueHandling.Ignore)]
 		public string ImageUri { get; set; }
 	}
 
 
 	public class QuickRepliesObj
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "quickReplies")]
+		[JsonProperty(PropertyName = "quickReplies", NullValueHandling = NullValueHandling.Ignore)]
 		public List<string> QuickReplies { get; set; }
 	}
 
 
 	public class Card
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "subtitle")]
+		[JsonProperty(PropertyName = "subtitle", NullValueHandling = NullValueHandling.Ignore)]
 		public string SubTitle { get; set; }
 
-		[JsonProperty(PropertyName = "imageUri")]
+		[JsonProperty(PropertyName = "imageUri", NullValueHandling = NullValueHandling.Ignore)]
 		public string ImageUri { get; set; }
 
-		[JsonProperty(PropertyName = "buttons")]
+		[JsonProperty(PropertyName = "buttons", NullValueHandling = NullValueHandling.Ignore)]
 		public List<CardButton> Button { get; set; }
 	}
 
 
 	public class CardButton
 	{
-		[JsonProperty(PropertyName = "text")]
+		[JsonProperty(PropertyName = "text", NullValueHandling = NullValueHandling.Ignore)]
 		public string Text { get; set; }
 
-		[JsonProperty(PropertyName = "postback")]
+		[JsonProperty(PropertyName = "postback", NullValueHandling = NullValueHandling.Ignore)]
 		public string Postback { get; set; }
 	}
 
 
 	public class SimpleResponsesObj
 	{
-		[JsonProperty(PropertyName = "simpleResponses")]
+		[JsonProperty(PropertyName = "simpleResponses", NullValueHandling = NullValueHandling.Ignore)]
 		public List<SimpleResponseObj> SimpleResponses { get; set; }
 
 
@@ -232,56 +232,56 @@ namespace LuasTimes.Dialogflow
 
 	public class SimpleResponseObj
 	{
-		[JsonProperty(PropertyName = "textToSpeech")]
+		[JsonProperty(PropertyName = "textToSpeech", NullValueHandling = NullValueHandling.Ignore)]
 		public string TextToSpeech { get; set; }
 
-		[JsonProperty(PropertyName = "ssml")]
+		[JsonProperty(PropertyName = "ssml", NullValueHandling = NullValueHandling.Ignore)]
 		public string Ssml { get; set; }
 
-		[JsonProperty(PropertyName = "displayText")]
+		[JsonProperty(PropertyName = "displayText", NullValueHandling = NullValueHandling.Ignore)]
 		public string DisplayText { get; set; }
 	}
 
 
 	public class BasicCard
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "subtitle")]
+		[JsonProperty(PropertyName = "subtitle", NullValueHandling = NullValueHandling.Ignore)]
 		public string SubTitle { get; set; }
 
-		[JsonProperty(PropertyName = "formattedText")]
+		[JsonProperty(PropertyName = "formattedText", NullValueHandling = NullValueHandling.Ignore)]
 		public string FormattedText { get; set; }
 
-		[JsonProperty(PropertyName = "image")]
+		[JsonProperty(PropertyName = "image", NullValueHandling = NullValueHandling.Ignore)]
 		public List<Image> Image { get; set; }
 
-		[JsonProperty(PropertyName = "buttons")]
+		[JsonProperty(PropertyName = "buttons", NullValueHandling = NullValueHandling.Ignore)]
 		public List<BasicCardButton> Buttons { get; set; }
 	}
 
 
 	public class BasicCardButton
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "openUriAction")]
+		[JsonProperty(PropertyName = "openUriAction", NullValueHandling = NullValueHandling.Ignore)]
 		public OpenUriAction OpenUriAction { get; set; }
 	}
 
 
 	public class OpenUriAction
 	{
-		[JsonProperty(PropertyName = "uri")]
+		[JsonProperty(PropertyName = "uri", NullValueHandling = NullValueHandling.Ignore)]
 		public string Uri { get; set; }
 	}
 
 
 	public class SuggestionsObj
 	{
-		[JsonProperty(PropertyName = "suggestions")]
+		[JsonProperty(PropertyName = "suggestions", NullValueHandling = NullValueHandling.Ignore)]
 		public List<Suggestion> Suggestions { get; set; }
 
 	}
@@ -289,60 +289,60 @@ namespace LuasTimes.Dialogflow
 
 	public class Suggestion
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 	}
 
 
 	public class LinkOutSuggestion
 	{
-		[JsonProperty(PropertyName = "destinationName")]
+		[JsonProperty(PropertyName = "destinationName", NullValueHandling = NullValueHandling.Ignore)]
 		public string DestinationName { get; set; }
 
-		[JsonProperty(PropertyName = "uri")]
+		[JsonProperty(PropertyName = "uri", NullValueHandling = NullValueHandling.Ignore)]
 		public string Uri { get; set; }
 	}
 
 
 	public class ListSelect
 	{
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "items")]
+		[JsonProperty(PropertyName = "items", NullValueHandling = NullValueHandling.Ignore)]
 		public List<ItemObj> Items { get; set; }
 	}
 
 
 	public class ItemObj
 	{
-		[JsonProperty(PropertyName = "info")]
+		[JsonProperty(PropertyName = "info", NullValueHandling = NullValueHandling.Ignore)]
 		public SelectItemInfo Info { get; set; }
 
-		[JsonProperty(PropertyName = "title")]
+		[JsonProperty(PropertyName = "title", NullValueHandling = NullValueHandling.Ignore)]
 		public string Title { get; set; }
 
-		[JsonProperty(PropertyName = "description")]
+		[JsonProperty(PropertyName = "description", NullValueHandling = NullValueHandling.Ignore)]
 		public string Description { get; set; }
 
-		[JsonProperty(PropertyName = "image")]
+		[JsonProperty(PropertyName = "image", NullValueHandling = NullValueHandling.Ignore)]
 		public Image Image { get; set; }
 	}
 
 
 	public class SelectItemInfo
 	{
-		[JsonProperty(PropertyName = "key")]
+		[JsonProperty(PropertyName = "key", NullValueHandling = NullValueHandling.Ignore)]
 		public string Key { get; set; }
 
-		[JsonProperty(PropertyName = "synonyms")]
+		[JsonProperty(PropertyName = "synonyms", NullValueHandling = NullValueHandling.Ignore)]
 		public List<string> Synonyms { get; set; }
 	}
 
 
 	public class CarouselSelect
 	{
-		[JsonProperty(PropertyName = "items")]
+		[JsonProperty(PropertyName = "items", NullValueHandling = NullValueHandling.Ignore)]
 		public List<ItemObj> Items { get; set; }
 	}
 }
