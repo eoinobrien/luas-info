@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,6 +5,8 @@ using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
+using LuasAPI.NET;
+using LuasAPI.NET.Stations;
 using LuasTimes.Responses;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -76,8 +76,7 @@ namespace LuasTimes
 
 			Alexa.NET.Response.SkillResponse defaultResponse = ResponseBuilder.Tell(new Alexa.NET.Response.PlainTextOutputSpeech { Text = "Unknown Station" });
 
-			return req.CreateResponse(HttpStatusCode.BadRequest,
-				JsonConvert.SerializeObject(defaultResponse));
+			return req.CreateResponse(HttpStatusCode.BadRequest, JsonConvert.SerializeObject(defaultResponse));
 		}
 	}
 }

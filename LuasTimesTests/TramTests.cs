@@ -1,14 +1,17 @@
-﻿using LuasTimes;
+﻿using System;
+using LuasAPI.NET;
+using LuasAPI.NET.Forecast;
+using LuasAPI.NET.Stations;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
+// TODO: Remove this class it should be in the API Class Library instead
 namespace LuasTimesTests
 {
 	[TestFixture]
 
 	public class TramTests
 	{
+	/*
 		[Test]
 		public void TramForcast_ParseDirectionCorrectly()
 		{
@@ -83,6 +86,6 @@ namespace LuasTimesTests
 				Assert.IsFalse(testCase.Item1.TramGoesToDestination(testCase.Item2, testCase.Item3));
 			}
 		}
-
+		*/
 	}
 }
