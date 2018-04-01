@@ -1,17 +1,24 @@
-using LuasTimes.Dialogflow;
-using LuasTimes.Responses;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using LuasTimes.Dialogflow.Request;
+using LuasTimes.Dialogflow.Response;
+using LuasTimes.Intents;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace LuasTimes
 {
 	public static class DialogFlowLuasTimes
 	{
+		/// <summary>
+		/// Entry point from Azure Function.
+		/// </summary>
+		/// <param name="req">Http Request</param>
+		/// <param name="log">Log that is later outputted to Azure</param>
+		/// <returns>Http Response</returns>
 		[FunctionName("DialogFlowLuasTimes")]
 		public static async Task<HttpResponseMessage> Run(
 			[HttpTrigger(AuthorizationLevel.Function, "post", Route = "dialogflow/")] HttpRequestMessage req,
@@ -20,31 +27,31 @@ namespace LuasTimes
 			log.Info("DialogFlow trigger function processed a request.");
 
 			// Get request body
-			DialogflowRequest request = await req.Content.ReadAsAsync<DialogflowRequest>();
-			Parameters parameters = request.QueryResult.Parameters;
+			V2Request request = await req.Content.ReadAsAsync<V2Request>();
+			V2Response response;
 
-			Station station = Station.GetFromAbbreviation(parameters.Station);
-			Direction direction = parameters.Direction.ParseDirection();
-			Station destinationStation = Station.GetFromAbbreviation(parameters.DestinationStation);
+			string intentName = request.QueryResult.Intent.DisplayName;
+			log.Info($"Intent: '{request.QueryResult.Intent.DisplayName}'");
 
-			log.Info(string.Format("Parameters: Station: '{0}', Direction: '{1}', Destination: '{2}'.", station == null ? "null" : station.Name, direction, destinationStation == null ? "null" : destinationStation.Name));
-
-			if (station != null)
+			if (intentName == "Welcome")
 			{
-				IResponse responseBuilder = new LuasTimesResponse(station, direction, destinationStation);
-				DialogFlowResponse response = new DialogFlowResponse(responseBuilder);
+				response = DialogFlowResponse.Tell("Hi. Try asking when is the next Luas from St. Stephen's Green.");
 
 				return req.CreateResponse(HttpStatusCode.OK, response);
+			}
+			else if (intentName == "LuasTimes")
+			{
+				dynamic parameters = request.QueryResult.Parameters;
+				LuasTimesIntent luasTimes = new LuasTimesIntent(log, parameters.station, parameters.direction, parameters.destinationStation);
+				response = luasTimes.GetDialogFlowResponse();
 
-				//return req.CreateResponse(HttpStatusCode.OK,
-				//	JsonConvert.SerializeObject(response,
-				//	Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+				return req.CreateResponse(HttpStatusCode.OK, response);
 			}
 
-			return req.CreateResponse(HttpStatusCode.OK, new DialogFlowResponse(new SimpleResponse("Unknown Station")));
+			// Fallback
+			response = DialogFlowResponse.Tell("Unknown Request.");
 
-			//return req.CreateResponse(HttpStatusCode.BadRequest,
-				//JsonConvert.SerializeObject());
+			return req.CreateResponse(HttpStatusCode.BadRequest, response);
 		}
 	}
 }

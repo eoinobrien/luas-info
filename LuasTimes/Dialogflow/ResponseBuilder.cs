@@ -1,12 +1,12 @@
 ﻿using LuasTimes.Dialogflow.Response;
 
-namespace LuasTimes
+namespace LuasTimes.Dialogflow
 {
-	public class DialogFlowResponse
+	public class ResponseBuilder
 	{
 		public static V2Response Tell(string text)
 		{
-			return Tell(text, $"<speak>{text}</speak>");
+			return Tell(text, text);
 		}
 
 

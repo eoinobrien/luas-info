@@ -1,7 +1,5 @@
-﻿using LuasTimes;
+﻿using LuasAPI.NET;
 using NUnit.Framework;
-using System;
-
 
 namespace LuasTimesTests
 {
@@ -20,11 +18,11 @@ namespace LuasTimesTests
 				"Inbound",
 				"Outbound",
 				"InBOUnd",
-				"outBOUND"
+				"outBOUND",
 			};
 
 
-			foreach(string dir in directions)
+			foreach (string dir in directions)
 			{
 				Assert.IsTrue((dir.ParseDirection() == Direction.Inbound) || (dir.ParseDirection() == Direction.Outbound));
 			}

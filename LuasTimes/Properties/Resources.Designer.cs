@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LuasTimes.Rescources {
+namespace LuasTimes.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace LuasTimes.Rescources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Responses {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Responses() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace LuasTimes.Rescources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LuasTimes.Rescources.Responses", typeof(Responses).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LuasTimes.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace LuasTimes.Rescources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luas Info.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
         
@@ -120,15 +129,6 @@ namespace LuasTimes.Rescources {
         internal static string Outbound {
             get {
                 return ResourceManager.GetString("Outbound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Luas Times.
-        /// </summary>
-        internal static string SkillName {
-            get {
-                return ResourceManager.GetString("SkillName", resourceCulture);
             }
         }
         
@@ -277,11 +277,20 @@ namespace LuasTimes.Rescources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to {0}. You can ask a question like, what&apos;s the recipe for a chest? ... Now, what can I help you with..
+        ///   Looks up a localized string similar to Welcome to {0}. You can ask things like, when is the next Luas from St. Stephen&apos;s Green..
         /// </summary>
         internal static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I didn&apos;t understand the stop provided. Example stops are St. Stephen&apos;s Green or Abbey Street.
+        /// </summary>
+        internal static string WelcomeMessage {
+            get {
+                return ResourceManager.GetString("WelcomeMessage", resourceCulture);
             }
         }
         
