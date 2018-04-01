@@ -10,7 +10,7 @@ namespace LuasTimes.Intents
 {
 	public class LuasTimesIntent : IIntent
 	{
-		private RealTimeInfo forcast;
+		private IRealTimeInfo forcast;
 
 		public LuasTimesIntent(TraceWriter log, string origin = null, string direction = null, string destination = null)
 		{

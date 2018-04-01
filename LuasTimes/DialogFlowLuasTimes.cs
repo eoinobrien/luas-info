@@ -39,12 +39,6 @@ namespace LuasTimes
 				response = DialogFlowResponse.Tell("Hi. Try asking when is the next Luas from St. Stephen's Green.");
 
 				return req.CreateResponse(HttpStatusCode.OK, response);
-
-				//return req.CreateResponse(
-				//	HttpStatusCode.OK,
-				//	JsonConvert.SerializeObject(
-				//		response,
-				//		new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
 			}
 			else if (intentName == "LuasTimes")
 			{

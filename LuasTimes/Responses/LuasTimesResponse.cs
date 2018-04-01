@@ -33,7 +33,7 @@ namespace LuasTimes.Responses
 		public Station Origin { get; private set; }
 
 
-		public RealTimeInfo RealTimeInfo { get; private set; }
+		public IRealTimeInfo RealTimeInfo { get; private set; }
 
 
 		public Direction Direction { get; private set; }
