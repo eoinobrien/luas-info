@@ -30,7 +30,6 @@ namespace LuasTimes
 			V2Request request = await req.Content.ReadAsAsync<V2Request>();
 			V2Response response;
 
-
 			string intentName = request.QueryResult.Intent.DisplayName;
 			log.Info($"Intent: '{request.QueryResult.Intent.DisplayName}'");
 

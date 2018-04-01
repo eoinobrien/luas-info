@@ -62,6 +62,7 @@ namespace LuasTimes.Responses
 
 				if (trams.All(t => t.NoTramsForcast))
 				{
+
 					Text += string.Format(Properties.Resources.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Name);
 					Ssml += string.Format(Properties.Resources.Time_NoTramsForcast_Direction, Direction.ToString().ToLower(), Origin.Pronunciation);
 					return;
@@ -104,6 +105,7 @@ namespace LuasTimes.Responses
 				{
 					Text += string.Format(Properties.Resources.Time_NoTramsForcast, Origin.Name);
 					Ssml += string.Format(Properties.Resources.Time_NoTramsForcast, Origin.Pronunciation);
+
 					return;
 				}
 
