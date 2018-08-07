@@ -1,4 +1,5 @@
 ﻿using Alexa.NET.Response;
+using LuasTimes.Dialogflow.Response;
 
 namespace LuasTimes.Intents
 {
@@ -6,6 +7,6 @@ namespace LuasTimes.Intents
 	{
 		SkillResponse GetAlexaSkillResponse();
 
-		// DialogFlowResponse GetDialogFlowResponse();
+		V2Response GetDialogFlowResponse();
 	}
 }

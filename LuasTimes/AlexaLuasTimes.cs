@@ -9,6 +9,7 @@ using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using LuasAPI.NET;
 using LuasAPI.NET.Stations;
+using LuasTimes.Intents;
 using LuasTimes.Responses;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -41,31 +42,22 @@ namespace LuasTimes
 					string stationResolution = intentRequest.Intent.Slots["station"].Resolution != null && intentRequest.Intent.Slots["station"].Resolution.Authorities.First().Status.Code == ResolutionStatusCode.SuccessfulMatch ?
 						intentRequest.Intent.Slots["station"].Resolution.Authorities.First().Values.First().Value.Id :
 						intentRequest.Intent.Slots["station"].Value;
-					Station station = Station.GetFromNameOrAbbreviation(stationResolution);
-
 
 					string directionResolution = intentRequest.Intent.Slots["direction"].Resolution != null && intentRequest.Intent.Slots["direction"].Resolution.Authorities.First().Status.Code == ResolutionStatusCode.SuccessfulMatch ?
 						intentRequest.Intent.Slots["direction"].Resolution.Authorities.First().Values.First().Value.Id :
 						intentRequest.Intent.Slots["direction"].Value;
-					Direction direction = directionResolution.ParseDirection();
 
 					string destinationStationResolution = intentRequest.Intent.Slots["destinationStation"].Resolution != null && intentRequest.Intent.Slots["destinationStation"].Resolution.Authorities.First().Status.Code == ResolutionStatusCode.SuccessfulMatch ?
 						intentRequest.Intent.Slots["destinationStation"].Resolution.Authorities.First().Values.First().Value.Id :
 						intentRequest.Intent.Slots["destinationStation"].Value;
-					Station destinationStation = Station.GetFromNameOrAbbreviation(destinationStationResolution);
 
-					log.Info(string.Format("Parameters: Station: '{0}', Direction: '{1}', Destination: '{2}'.", station == null ? "null" : station.Name, direction, destinationStation == null ? "null" : destinationStation.Name));
+					// log.Info(string.Format("Parameters: Station: '{0}', Direction: '{1}', Destination: '{2}'.", station == null ? "null" : station.Name, direction, destinationStation == null ? "null" : destinationStation.Name));
 
-					if (station != null)
+					if (stationResolution != null)
 					{
-						IResponse responseBuilder = new LuasTimesResponse(station, direction, destinationStation);
+						LuasTimesIntent luasTimes = new LuasTimesIntent(log, stationResolution, directionResolution, destinationStationResolution);
 
-						var speech = new Alexa.NET.Response.PlainTextOutputSpeech
-						{
-							Text = responseBuilder.Text
-						};
-
-						Alexa.NET.Response.SkillResponse response = ResponseBuilder.Tell(speech);
+						Alexa.NET.Response.SkillResponse response = luasTimes.GetAlexaSkillResponse();
 
 						return req.CreateResponse(HttpStatusCode.OK, response);
 					}
@@ -78,7 +70,7 @@ namespace LuasTimes
 
 			Alexa.NET.Response.SkillResponse defaultResponse = ResponseBuilder.Tell(new Alexa.NET.Response.PlainTextOutputSpeech { Text = "Unknown Station" });
 
-			return req.CreateResponse(HttpStatusCode.BadRequest, JsonConvert.SerializeObject(defaultResponse));
+			return req.CreateResponse(HttpStatusCode.BadRequest, defaultResponse);
 		}
 	}
 }

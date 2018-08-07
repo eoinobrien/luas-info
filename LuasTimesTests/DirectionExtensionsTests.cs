@@ -1,12 +1,11 @@
 ﻿using LuasAPI.NET;
-using NUnit.Framework;
+using Xunit;
 
 namespace LuasTimesTests
 {
-	[TestFixture]
 	public class DirectionExtensionsTests
 	{
-		[Test]
+		[Fact]
 		public void ValidDirections_ReturnValidDirection()
 		{
 			string[] directions = new string[]
@@ -21,15 +20,13 @@ namespace LuasTimesTests
 				"outBOUND",
 			};
 
-
 			foreach (string dir in directions)
 			{
-				Assert.IsTrue((dir.ParseDirection() == Direction.Inbound) || (dir.ParseDirection() == Direction.Outbound));
+				Assert.True((dir.ParseDirection() == Direction.Inbound) || (dir.ParseDirection() == Direction.Outbound));
 			}
 		}
 
-
-		[Test]
+		[Fact]
 		public void InvalidDirections_ReturnUndefinedDirection()
 		{
 			string[] directions = new string[]
@@ -41,10 +38,9 @@ namespace LuasTimesTests
 				"OUTWARDS"
 			};
 
-
 			foreach (string dir in directions)
 			{
-				Assert.IsTrue(dir.ParseDirection() == Direction.Undefined);
+				Assert.True(dir.ParseDirection() == Direction.Undefined);
 			}
 		}
 	}

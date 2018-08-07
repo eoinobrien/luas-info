@@ -1,13 +1,12 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using LuasTimes.Dialogflow.Request;
+using Dialogflow.NET.Request;
 using LuasTimes.Dialogflow.Response;
 using LuasTimes.Intents;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json;
 
 namespace LuasTimes
 {
@@ -35,9 +34,8 @@ namespace LuasTimes
 
 			if (intentName == "Welcome")
 			{
-				response = DialogFlowResponse.Tell("Hi. Try asking when is the next Luas from St. Stephen's Green.");
-
-				return req.CreateResponse(HttpStatusCode.OK, response);
+				WelcomeIntent welcomeIntent = new WelcomeIntent();
+				return req.CreateResponse(HttpStatusCode.OK, welcomeIntent.GetDialogFlowResponse());
 			}
 			else if (intentName == "LuasTimes")
 			{

@@ -94,8 +94,8 @@ namespace LuasTimes.Responses
 					}
 					else
 					{
-						Text += string.Format(Properties.Resources.Time_ResultMinutes_1, Origin.Name, $"to {Destination.Name}", trams.First().Minutes.GetMinutesString());
-						Ssml += string.Format(Properties.Resources.Time_ResultMinutes_1_SSML, Origin.Pronunciation, $"to {Destination.Pronunciation}", trams.First().Minutes.GetMinutesString());
+						Text += string.Format(Properties.Resources.Time_ResultMinutes_1, Origin.Name, $"to {trams.First().DestinationStation.Name}", trams.First().Minutes.GetMinutesString());
+						Ssml += string.Format(Properties.Resources.Time_ResultMinutes_1_SSML, Origin.Pronunciation, $"to {trams.First().DestinationStation.Name}", trams.First().Minutes.GetMinutesString());
 					}
 				}
 			}

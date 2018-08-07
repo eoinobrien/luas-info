@@ -1,4 +1,5 @@
-﻿using Alexa.NET.Response;
+﻿using Alexa.NET;
+using Alexa.NET.Response;
 using LuasAPI.NET;
 using LuasAPI.NET.Forecast;
 using LuasAPI.NET.Stations;
@@ -44,7 +45,14 @@ namespace LuasTimes.Intents
 
 		public SkillResponse GetAlexaSkillResponse()
 		{
-			throw new System.NotImplementedException();
+			LuasTimesResponse responseBuilder = new LuasTimesResponse(OriginStation, Direction, DestinationStation);
+
+			var speech = new Alexa.NET.Response.PlainTextOutputSpeech
+			{
+				Text = responseBuilder.Text
+			};
+
+			return ResponseBuilder.Tell(speech);
 		}
 
 

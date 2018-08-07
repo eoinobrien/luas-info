@@ -51,4 +51,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dialogflow-dotnet\Dialogflow.Net\Dialogflow.NET.csproj" />
+  </ItemGroup>
 </Project>

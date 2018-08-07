@@ -142,7 +142,7 @@ namespace LuasTimes.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The next tram from {0} {1} is due now. The following departure is in {2}.
+        ///   Looks up a localized string similar to The next tram from {0} {1} is due now. The following departure is in {2}. .
         /// </summary>
         internal static string Time_DueAndNext_1 {
             get {
