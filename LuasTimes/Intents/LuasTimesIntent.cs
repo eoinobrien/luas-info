@@ -1,9 +1,9 @@
 ﻿using Alexa.NET;
 using Alexa.NET.Response;
+using Dialogflow.NET.Response;
 using LuasAPI.NET;
 using LuasAPI.NET.Forecast;
 using LuasAPI.NET.Stations;
-using LuasTimes.Dialogflow.Response;
 using LuasTimes.Responses;
 using Microsoft.Azure.WebJobs.Host;
 
@@ -59,8 +59,9 @@ namespace LuasTimes.Intents
 		public V2Response GetDialogFlowResponse()
 		{
 			LuasTimesResponse luasTimesResponse = new LuasTimesResponse(OriginStation, Direction, DestinationStation);
+			Dialogflow.NET.ResponseBuilder builder = new Dialogflow.NET.ResponseBuilder();
 
-			return DialogFlowResponse.Tell(luasTimesResponse.Text, luasTimesResponse.Ssml);
+			return builder.Reply(luasTimesResponse.Text, luasTimesResponse.Ssml);
 		}
 
 

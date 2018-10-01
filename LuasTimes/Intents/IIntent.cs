@@ -1,5 +1,5 @@
 ﻿using Alexa.NET.Response;
-using LuasTimes.Dialogflow.Response;
+using Dialogflow.NET.Response;
 
 namespace LuasTimes.Intents
 {

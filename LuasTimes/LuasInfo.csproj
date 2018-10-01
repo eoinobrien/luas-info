@@ -52,6 +52,6 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\dialogflow-dotnet\Dialogflow.Net\Dialogflow.NET.csproj" />
+    <ProjectReference Include="..\..\dialogflow-fulfillment-dotnet\DialogflowFulfillment.Net\DialogflowFulfillment.NET.csproj" />
   </ItemGroup>
 </Project>

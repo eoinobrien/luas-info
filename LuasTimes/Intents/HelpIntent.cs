@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Alexa.NET.Response;
-using LuasTimes.Dialogflow.Response;
+using Dialogflow.NET.Response;
 
 namespace LuasTimes.Intents
 {

@@ -1,8 +1,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Dialogflow.NET;
 using Dialogflow.NET.Request;
-using LuasTimes.Dialogflow.Response;
+using Dialogflow.NET.Response;
 using LuasTimes.Intents;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
@@ -46,8 +47,10 @@ namespace LuasTimes
 				return req.CreateResponse(HttpStatusCode.OK, response);
 			}
 
+			ResponseBuilder builder = new ResponseBuilder();
+
 			// Fallback
-			response = DialogFlowResponse.Tell("Unknown Request.");
+			response = builder.Reply("Unknown Request.");
 
 			return req.CreateResponse(HttpStatusCode.BadRequest, response);
 		}

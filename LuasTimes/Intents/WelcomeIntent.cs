@@ -1,6 +1,7 @@
 ﻿using System;
 using Alexa.NET.Response;
-using LuasTimes.Dialogflow.Response;
+using Dialogflow.NET;
+using Dialogflow.NET.Response;
 
 namespace LuasTimes.Intents
 {
@@ -17,7 +18,8 @@ namespace LuasTimes.Intents
 
 		public V2Response GetDialogFlowResponse()
 		{
-			return DialogFlowResponse.Tell(string.Format(Properties.Resources.Welcome, Properties.Resources.AppName));
+			ResponseBuilder builder = new ResponseBuilder();
+			return builder.Reply(string.Format(Properties.Resources.Welcome, Properties.Resources.AppName));
 		}
 	}
 }
