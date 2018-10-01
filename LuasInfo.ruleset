@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="LuasTime RuleSets" Description="Common set of StyleCop Rules for C#" ToolsVersion="15.0">
+<RuleSet Name="LuasInfo RuleSets" Description="Common set of StyleCop Rules for C#" ToolsVersion="15.0">
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
     <Rule Id="CS0419" Action="Info" />
     <Rule Id="CS1591" Action="Info" />

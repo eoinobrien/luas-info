@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuasInfo", "LuasTimes\LuasInfo.csproj", "{F286053D-94E6-44A8-AC62-63697060D02C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuasInfo", "LuasInfo\LuasInfo.csproj", "{F286053D-94E6-44A8-AC62-63697060D02C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuasInfoTests", "LuasTimesTests\LuasInfoTests.csproj", "{5F83175A-83FA-48CB-B45A-A58153565818}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuasInfoTests", "LuasInfoTests\LuasInfoTests.csproj", "{5F83175A-83FA-48CB-B45A-A58153565818}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27493626-37C8-485A-A433-EB4EAF8BBF5E}"
 	ProjectSection(SolutionItems) = preProject
-		LuasTimes.ruleset = LuasTimes.ruleset
+		LuasInfo.ruleset = LuasInfo.ruleset
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DialogflowFulfillment.NET", "..\dialogflow-fulfillment-dotnet\DialogflowFulfillment.NET\DialogflowFulfillment.NET.csproj", "{5E134CC4-5E4C-49B4-A898-56AA4019DD02}"
